@@ -42,30 +42,32 @@ const WorkItemComponent = ({
       variants={slideDownItemVariants}
       className="relative work-title"
     >
-      <motion.img
-        {...grayscaleAnimation}
-        className="work-logo"
-        src={logo}
-        alt={alt}
-        loading="lazy"
-      />
+      <div className="relative size-12 shrink-0">
+        <motion.img
+          {...grayscaleAnimation}
+          className="work-logo"
+          src={logo}
+          alt={alt}
+          loading="lazy"
+        />
+        {showGlow && (
+          <motion.img
+            variants={glowVariants}
+            initial="initial"
+            animate="animate"
+            className="absolute inset-0 -z-[1] size-12 object-cover blur-xl saturate-150"
+            src={logo}
+            alt={alt}
+            loading="lazy"
+          />
+        )}
+      </div>
       <motion.span
         {...opacityAnimation}
         className="text-[var(--color-fg-secondary)]"
       >
         {children}
       </motion.span>
-      {showGlow && (
-        <motion.img
-          variants={glowVariants}
-          initial="initial"
-          animate="animate"
-          className="absolute top-0 -left-2 -z-[1] size-[4rem] object-cover blur-xl saturate-150"
-          src={logo}
-          alt={alt}
-          loading="lazy"
-        />
-      )}
     </motion.div>
   );
 };
