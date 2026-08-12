@@ -76,19 +76,24 @@ ol#songs {
 
 ol#songs > li {
 	position: relative;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	height: var(--yt-thumb-dim);
 	width: var(--yt-thumb-dim);
 	border-radius: 0.5rem;
 	overflow: hidden;
 }
 
+ol#songs > li > a {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
 ol#songs > li .song-info {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	right: 0;
+	box-sizing: border-box;
 	padding: 1rem;
 	padding-top: 4rem;
 	width: 100%;
@@ -129,13 +134,13 @@ ol#songs > li .thumb-container {
 }
 
 ol#songs > li .thumb-container > img {
-	height: 256px;
-	width: 256px;
+	display: block;
+	height: 100%;
+	width: 100%;
 	flex-grow: 0;
 	border-radius: 0.5rem;
 	object-fit: cover;
 	object-position: center;
-	transform: translateY(-32px) translateX(-32px);
 }
 
 .work-title {
@@ -242,10 +247,6 @@ img.bg {
 		transform: scale(1.5);
 	}
 
-	ol#songs > li .thumb-container > img {
-		height: 192px;
-		width: 192px;
-	}
 }
 
 .bento-content-mask {

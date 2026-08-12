@@ -1,5 +1,5 @@
 const YOUTUBE_MUSIC_CONFIG = {
-	API_KEY: "AIzaSyD_-SE7VcOCfum3vfbqGn3iypOtmnaJJj0",
+	API_KEY: import.meta.env.VITE_YOUTUBE_API_KEY,
 	PLAYLIST_ID: "PLBsegumhPb_I",
 	MAX_RESULTS: 6,
 } as const;
