@@ -181,6 +181,8 @@ ol#songs > li .thumb-container > img {
 .ytm-title img {
 	height: 1rem;
 	width: 1rem;
+	filter: brightness(0) saturate(100%) invert(30%);
+	opacity: 1;
 }
 
 .hero-wrapper {

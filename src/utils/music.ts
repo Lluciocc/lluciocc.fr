@@ -6,8 +6,8 @@ const YOUTUBE_MUSIC_CONFIG = {
 
 export const MUSIC_LINKS = {
 	YOUTUBE_MUSIC_PLAYLIST:
-		"https://music.youtube.com/playlist?list=PLAVz83Xtm7v2SeBdjrAFBNCwYIft8ZdVl&si=cUgD3kahp6Gcheeo",
-	FAVICON: "https://music.youtube.com/img/favicon_32.png",
+		"https://music.youtube.com/playlist?list=PLBsegumhPb_I&si=8ZD8oPihMGKuYu0I",
+	FAVICON: "music.png",
 } as const;
 
 export const MUSIC_TEXTS = {
