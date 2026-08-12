@@ -33,7 +33,11 @@ jobs:
         run: npm ci
 
       - name: compile site
-        run: npm run build
+        env:
+          VITE_YOUTUBE_API_KEY: ${{ secrets.VITE_YOUTUBE_API_KEY }}
+        run: |
+          test -n "$VITE_YOUTUBE_API_KEY"
+          npm run build
 
       - name: config gh pages
         uses: actions/configure-pages@v5
