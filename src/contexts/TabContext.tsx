@@ -1,0 +1,31 @@
+import React from "react";
+
+const TAB_ORDER = ["projects", "work", "music", "contact"] as const;
+
+export type TTab = (typeof TAB_ORDER)[number];
+
+export interface ITabContext {
+	activeTab: TTab;
+	setActiveTab: React.Dispatch<React.SetStateAction<TTab>>;
+}
+
+export const TabContext = React.createContext<ITabContext | null>(null);
+
+export const TabProvider = ({ children }: { children: React.ReactNode }) => {
+	// Get the active tab from the URL
+	const url = new URL(window.location.href);
+	const tab = url.searchParams.get("tab") as TTab;
+	const [activeTab, setActiveTab] = React.useState<TTab>(tab || "projects");
+
+	React.useEffect(() => {
+		const url = new URL(window.location.href);
+		url.searchParams.set("tab", activeTab);
+		window.history.pushState({}, "", url.toString());
+	}, [activeTab]);
+
+	return (
+		<TabContext.Provider value={{ activeTab, setActiveTab }}>
+			{children}
+		</TabContext.Provider>
+	);
+};
