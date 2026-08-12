@@ -20,11 +20,11 @@ const Banner = () => {
   const [show, setShow] = React.useState(false);
   const handleClose = () => {
     setShow(false);
-    localStorage.setItem("showBanner", "false");
+    localStorage.setItem("showGithubBanner", "false");
   };
 
   React.useEffect(() => {
-    if (localStorage.getItem("showBanner") !== "false") {
+    if (localStorage.getItem("showGithubBanner") !== "false") {
       setTimeout(() => {
         setShow(true);
       }, 500);
@@ -41,16 +41,15 @@ const Banner = () => {
           exit="exit"
           className="fixed gap-4 p-5 mb-6 overflow-hidden text-sm border border-indigo-600 rounded-lg shadow-lg top-8 right-8 text-indigo-50 bg-indigo-950"
         >
-          <p className="block mb-2 text-2xl font-bold">Psst!</p>
+          <p className="block mb-2 text-2xl font-bold">Hey!</p>
           <p className="pr-8 text-indigo-200 max-w-64">
-            While you're here, mind checking out my extension if you use Youtube
-            Music? Its called Better Lyrics and it makes your lyrics look 100x
-            better!
+            Take a look at my GitHub profile to see what I'm building and
+            contributing to.
           </p>
           <div className="flex items-center gap-2">
             <a
               className="flex items-center gap-2 px-3 py-2 pr-4 mt-4 text-xs bg-indigo-900 rounded-lg hover:bg-indigo-800 text-indigo-50 w-fit hover:no-underline"
-              href="https://better-lyrics.lluciocc.fr/"
+              href="https://github.com/lluciocc"
               target="_blank"
               rel="noreferrer"
               onClick={handleClose}
@@ -66,10 +65,10 @@ const Banner = () => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                  d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.75c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
                 />
               </svg>
-              Learn More
+              View Profile
             </a>
             <button
               onClick={handleClose}
@@ -93,12 +92,6 @@ const Banner = () => {
             </button>
           </div>
 
-          <img
-            src="https://raw.githubusercontent.com/lluciocc/better-lyrics/master/images/icons/icon-512.png"
-            className="absolute -top-6 -right-6 size-24 opacity-10"
-            alt="Better Lyrics for Youtube Music"
-            loading="lazy"
-          />
         </motion.div>
       )}
     </AnimatePresence>
