@@ -93,6 +93,15 @@ export const PROJECT_ITEMS: ProjectItem[] = [
 		interactive: true,
 		component: lazy(() => import("@/components/projects/gol")),
 	},
+	{
+		id: "cube",
+		title: "Cube",
+		description: "A simple implementation of a cube with OpenGL in C#",
+		link: "https://github.com/Lluciocc/OpenGLProcedural",
+		image: "https://www.opengl.org/favicon-32x32.png",
+		interactive: true,
+		component: lazy(() => import("@/components/projects/cube")),
+	}
 ];
 
 export const WORK_ITEMS = [
