@@ -17,6 +17,7 @@ export const BENTO_LAYOUT_ORDER = [
 	{ id: "repo", size: "smallWide" as BentoSize },
 	{ id: "spc", size: "smallWide" as BentoSize },
 	{ id: "bos", size: "medium" as BentoSize },
+	{ id: "gol", size: "small" as BentoSize },
 ];
 
 export const BENTO_GRID_CLASSES =

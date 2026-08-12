@@ -23,8 +23,9 @@ const BentoProjectCardComponent = ({
   title,
   description,
   link,
-  image,
-  PreviewComponent,
+	image,
+	interactive = false,
+	PreviewComponent,
   size = "small",
   className = "",
 }: BentoProjectCardProps) => {
@@ -43,14 +44,16 @@ const BentoProjectCardComponent = ({
 
   return (
     <motion.div variants={slideUpItemVariants} className={styles}>
-      <a
-        href={link}
-        target="_blank"
-        rel="noreferrer"
-        className="absolute inset-0 z-10 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
-      >
-        <span className="sr-only">{title}</span>
-      </a>
+		{!interactive && (
+			<a
+				href={link}
+				target="_blank"
+				rel="noreferrer"
+				className="absolute inset-0 z-10 focus-visible:outline-dashed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+			>
+				<span className="sr-only">{title}</span>
+			</a>
+		)}
 
       {PreviewComponent && (
         <div className="absolute inset-0 overflow-hidden transition-all duration-[400ms] ease-in-out sm:grayscale group-hover:grayscale-0 group-focus-within:grayscale-0 ">
@@ -60,9 +63,17 @@ const BentoProjectCardComponent = ({
         </div>
       )}
 
-      <div className="absolute inset-0 overflow-hidden bento-content-mask " />
+      <div
+        className={`absolute inset-0 overflow-hidden bento-content-mask ${
+          interactive ? "pointer-events-none" : ""
+        }`}
+      />
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 p-4 pb-2 overflow-hidden ">
+      <div
+        className={`absolute bottom-0 left-0 right-0 z-20 p-4 pb-2 overflow-hidden ${
+          interactive ? "pointer-events-none" : ""
+        }`}
+      >
         <AnimatePresence mode="popLayout">
           <motion.div
             initial="initial"

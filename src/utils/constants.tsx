@@ -83,7 +83,16 @@ export const PROJECT_ITEMS: ProjectItem[] = [
 		link: "https://github.com/BoredOS",
 		image: "https://github.com/BoredOS/BoredOS/raw/main/base/Library/Images/branding/bos.png?raw=true",
 		component: lazy(() => import("@/components/projects/bos")),
-	}
+	},
+	{
+		id: "gol",
+		title: "Game of Life",
+		description: "A simple implementation of the Game of Life in React",
+		link: "",
+		image: "",
+		interactive: true,
+		component: lazy(() => import("@/components/projects/gol")),
+	},
 ];
 
 export const WORK_ITEMS = [

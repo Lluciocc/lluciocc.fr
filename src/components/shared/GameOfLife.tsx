@@ -1,16 +1,19 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface GameOfLifeProps {
 	colors: string[];
 	children?: React.ReactNode;
 	className?: string;
+	startOnClick?: boolean;
 }
 
 export const GameOfLife = ({
 	colors,
 	children,
 	className = "",
+	startOnClick = false,
 }: GameOfLifeProps) => {
+	const [isPlaying, setIsPlaying] = useState(!startOnClick);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const animationIdRef = useRef<number>();
 	const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -178,7 +181,9 @@ export const GameOfLife = ({
 		const resizeObserver = new ResizeObserver(resizeCanvas);
 		resizeObserver.observe(canvas);
 
-		animationIdRef.current = requestAnimationFrame(animate);
+		if (isPlaying) {
+			animationIdRef.current = requestAnimationFrame(animate);
+		}
 
 		return () => {
 			resizeObserver.disconnect();
@@ -186,10 +191,27 @@ export const GameOfLife = ({
 				cancelAnimationFrame(animationIdRef.current);
 			}
 		};
-	}, [resizeCanvas, animate]);
+	}, [resizeCanvas, animate, isPlaying]);
+
+	const startGame = () => {
+		if (startOnClick) {
+			setIsPlaying(true);
+		}
+	};
 
 	return (
-		<div className={`absolute inset-0 ${className}`}>
+		<div
+			className={`absolute inset-0 ${className}`}
+			onClick={startGame}
+			role={startOnClick ? "button" : undefined}
+			tabIndex={startOnClick ? 0 : undefined}
+			onKeyDown={(event) => {
+				if (startOnClick && (event.key === "Enter" || event.key === " ")) {
+					event.preventDefault();
+					startGame();
+				}
+			}}
+		>
 			<canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full" />
 			{children && (
 				<div className="relative z-10 flex items-center justify-center h-full p-4">

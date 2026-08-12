@@ -21,9 +21,10 @@ const ProjectsSection = () => {
                 id={item.id}
                 title={item.title}
                 description={item.description}
-                link={item.link}
-                image={item.image}
-                size={size}
+					link={item.link}
+					image={item.image}
+					interactive={item.interactive}
+					size={size}
                 PreviewComponent={item.component}
               />
             );

@@ -5,6 +5,7 @@ export interface ProjectItem {
 	link: string;
 	image: string;
 	component?: React.ComponentType;
+	interactive?: boolean;
 }
 
 export const PROJECTS_TEXT = {
