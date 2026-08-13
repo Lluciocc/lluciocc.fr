@@ -32,7 +32,7 @@ export const PROJECT_ITEMS: ProjectItem[] = [
 		id: "vish",
 		title: "Vish",
 		description: "Vish is a graphical editor for creating and managing Bash scripts using a node-based interface.",
-		link: "https://flathub.org/en/apps/io.github.Lluciocc.Vish",
+		link: "https://flathub.org/apps/io.github.lluciocc.Vish",
 		image: "https://raw.githubusercontent.com/Lluciocc/Vish/0aca8b5a6f776d468d13c64f52a3dc3037d82159/assets/icons/Vish.svg",
 		component: lazy(() => import("@/components/projects/vish")),
 	},
