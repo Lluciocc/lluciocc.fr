@@ -80,7 +80,7 @@ const WorkSection = () => {
   return (
     <>
       <h3>
-        I'm currently working at{" "}
+        I'm currently studying at{" "}
         <a href={currentWork.link} target="_blank" rel="noreferrer">
           {currentWork.alt}
         </a>
