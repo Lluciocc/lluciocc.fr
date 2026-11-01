@@ -13,7 +13,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 		label: "Github",
 	},
 	{
-		href: "https://linkedin.com/in/lluciocc",
+		href: "https://www.linkedin.com/in/lucas-cialdella",
 		label: "Linkedin",
 	},
 	{
