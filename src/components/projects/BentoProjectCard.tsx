@@ -5,6 +5,7 @@ import { hoverVariants, slideUpItemVariants } from "@/utils/animations";
 import type { BentoSize } from "@/utils/bento-config";
 import { buildClassName } from "@/utils/functions";
 import type { ProjectItem } from "@/utils/projects";
+import { usePreviewGlow } from "./usePreviewGlow";
 
 interface BentoProjectCardProps extends Omit<ProjectItem, "component"> {
   PreviewComponent?: React.ComponentType;
@@ -30,20 +31,37 @@ const BentoProjectCardComponent = ({
   className = "",
 }: BentoProjectCardProps) => {
   const [imageError, setImageError] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
+  const { previewRef, glowImage } = usePreviewGlow(hovered);
 
   const styles = React.useMemo(
     () =>
       buildClassName([
         sizeClasses[size],
         className,
-        "relative border border-zinc-500/15 rounded-2xl overflow-hidden",
+        "bento-project-card relative rounded-2xl",
         "group cursor-pointer min-h-[128px]",
       ]),
     [size, className],
   );
 
   return (
-    <motion.div variants={slideUpItemVariants} className={styles}>
+    <motion.div
+      variants={slideUpItemVariants}
+      className={styles}
+      onPointerEnter={(event) => {
+        if (event.pointerType !== "touch") setHovered(true);
+      }}
+      onPointerLeave={() => setHovered(false)}
+      onPointerCancel={() => setHovered(false)}
+    >
+      <div className="bento-project-glow" aria-hidden="true">
+        <div
+          className="bento-project-glow-image"
+          style={{ backgroundImage: glowImage ? `url(${JSON.stringify(glowImage)})` : undefined }}
+        />
+      </div>
+      <div className="absolute inset-0 overflow-hidden rounded-2xl border border-zinc-500/15 bg-zinc-950">
 		{!interactive && (
 			<a
 				href={link}
@@ -56,7 +74,7 @@ const BentoProjectCardComponent = ({
 		)}
 
       {PreviewComponent && (
-        <div className="absolute inset-0 overflow-hidden transition-all duration-[400ms] ease-in-out sm:grayscale group-hover:grayscale-0 group-focus-within:grayscale-0 ">
+        <div ref={previewRef} className="absolute inset-0 overflow-hidden">
           <Suspense fallback={null}>
             <PreviewComponent />
           </Suspense>
@@ -104,6 +122,7 @@ const BentoProjectCardComponent = ({
             )}
           </motion.div>
         </AnimatePresence>
+      </div>
       </div>
     </motion.div>
   );

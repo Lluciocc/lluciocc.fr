@@ -254,6 +254,66 @@ img.bg {
 
 }
 
+.bento-project-card {
+	isolation: isolate;
+}
+
+.bento-project-glow {
+	position: absolute;
+	inset: -6px;
+	z-index: -1;
+	pointer-events: none;
+	border-radius: inherit;
+	opacity: 0;
+	transition: opacity 350ms ease;
+}
+
+.bento-project-glow-image {
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background-position: center;
+	background-size: cover;
+	filter: blur(18px) saturate(1.8) brightness(1.35);
+	animation: project-glow-drift 3s ease-in-out infinite alternate;
+	animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.bento-project-card:hover .bento-project-glow {
+		opacity: 0.85;
+	}
+
+	.bento-project-card:hover .bento-project-glow-image {
+		animation-play-state: running;
+	}
+}
+
+@keyframes project-glow-drift {
+	0% {
+		transform: translate(-3px, 2px) scale(1.01);
+		opacity: 0.65;
+	}
+	50% {
+		transform: translate(3px, -3px) scale(1.04);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-2px, -1px) scale(1.02);
+		opacity: 0.8;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bento-project-glow {
+		transition: none;
+	}
+
+	.bento-project-glow-image {
+		animation: none;
+	}
+}
+
 .bento-content-mask {
 	background: linear-gradient(
 		to top,
